@@ -1,0 +1,10 @@
+= form_for @tweet do |f|
+  .form-group
+    = f.text_area :content, class: "form-control", placeholder: "いまどうしてる？", maxlength: '140', size: '100'
+    %span.i.fa-camera
+      = f.label :image_url, "画像"
+      = f.file_field :image_url
+
+
+      .text-right
+        = f.submit "ツイート", class: "btn btn-primary"

@@ -1,0 +1,38 @@
+#tweets-content
+  .container
+    %div.content-main
+      -#.col-xs-4.left-content
+
+      .col-xs-4.left-content
+        ="ダイレクトメッセージ"
+        = div_for @messages, class: "list-group-item" do |message|
+          %h4.user
+            %span.user-name
+              = link_to @screen_name[message.from_user_id]
+            %span.user-id
+              @#{@name[message.from_user_id]}
+            %span.time.pull-right
+              = distance_of_time_in_words_to_now(message.created_at)
+            .cleard
+          .tweet-content
+            %p
+              =message.message
+      .col-xs-4.right-content
+        =search_form_for @user, :url => {:action => :index} do |f|
+          = f.label :name, "メッセージの送信先:"
+          = f.search_field :name_cont
+          = f.submit
+
+        = div_for @users, class: "list-group-item" do |u|
+          %h4.user
+            %span.user-name
+              = u.screen_name
+            %span.user-id
+              @#{u.name}
+
+
+        = form_for @message, :url => {:action => 'create'} do |f|
+          .form-group
+            = f.text_area :message, class: "form-control", placeholder: "いまどうしてる？", maxlength: '140', size: '100'
+            .text-right
+              = f.submit "送信", class: "btn btn-primary"
