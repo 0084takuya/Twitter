@@ -1,14 +1,18 @@
-#tweets-content
-  .cotainer
-    .row
-      .col-xs-4.left-content
-        = render partial: "panel"
-      .col-xs-8.right-content
-        - if notice
-          .alert.alert-info= notice
-        .list-group
-          .list-group-item
-            .btn-group
-              = link_to "全てのつぶやき", tweets_path, class: "active btn btn-primany"
-              = link_to "フォローしている人のつぶやき", timeline_tweets_path, class: "btn btn-default"
-          = render partial: "users/tweet", collection: @tweets
+-##tweets-content
+-#  .container
+-#    %div.content-main
+-#      .col-xs-4.left-content
+-#        = render partial: "panel"
+-#      .col-xs-4.right-content
+-#        = render partial: "tweet"
+-#    %div.dashboard.dashboard-left
+-#    .col-xs-8.right-content
+-#      - if notice
+-#        .alert.alert-info= notice
+-#      .list-group
+-#        .list-group-item
+-#          .btn-group
+-#            #TODO ぐるぐる飛ばしすぎ
+-#            -#= link_to "全てのツイート", tweets_path, class: "active btn btn-primany"
+-#            -#= link_to "フォローしている人のツイート", timeline_tweets_path, class: "btn btn-default"
+-#        = render partial: "users/tweet", collection: @tweets

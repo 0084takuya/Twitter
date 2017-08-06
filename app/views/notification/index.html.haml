@@ -1,0 +1,19 @@
+#tweets-content
+  .container
+    %div.content-main
+      -#.col-xs-4.left-content
+
+      .col-xs-4.right-content
+        ="通知"
+        = div_for @notifications, class: "list-group-item" do |t|
+          %h4.user
+            %span.user-name
+              = link_to @screen_name[t.from_user_id]
+            %span.user-id
+              @#{@name[t.from_user_id]}
+            %span.time.pull-right
+              = distance_of_time_in_words_to_now(t.created_at)
+            .clear
+          .tweet-content
+            %p
+              =t.message

@@ -7,12 +7,22 @@
         設定
       .form-body
         .form-group
-          = f.label :name, "ユーザーID: @cyllabus_jp", class: "control-label"
+          = f.label :name, "ユーザー名 @", class: "control-label"
           = f.text_field :name, class: "form-control"
         .form-group
-          = f.label :screen_name, "表示名: シラバス", class: "control-label"
+          = f.label :screen_name, "名前", class: "control-label"
           = f.text_field :screen_name, class: "form-control"
         .form-group
           = f.label :bio, "プロフィール(200文字)", class: "control-label"
           = f.text_area :bio, class: "form-control"
+        .form-group
+          = f.label :image_url, "プロフィール画像"
+          = image_tag @user.image_url.thumb.url if @user.image_url?
+          = f.file_field :image_url
+          = f.hidden_field :image_url_cache
+        .form-group
+          = f.label :background_image_url, "背景画像"
+          = image_tag @user.background_image_url.thumb.url if @user.background_image_url?
+          = f.file_field :background_image_url
+          = f.hidden_field :background_image_url_cache
           = f.submit "送信する", class: "btn btn-success"

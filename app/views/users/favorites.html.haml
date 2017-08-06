@@ -2,6 +2,6 @@
   = render partial: "users/header"
   .list-group
     -if @user.favorites.empty?
-    .list-group-item
-      まだお気に入りに追加されたツイートはありません
+      .list-group-item
+        まだお気に入りに追加されたツイートはありません
     =render partial: "users/tweet", collection: @user.favorites.map{|f| f.tweet}

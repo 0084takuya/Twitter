@@ -1,24 +1,27 @@
 #registrations-new
-  .col-xs-6.left-content
-    %h1 #Tsubuyaki
-    %p.ex
-      このサイトは、シラバスのRails学習コースの完成形サンプルアプリです。Microsoft Azure上で運用されています。
-    %p.by
-      開発者: @ohataken デザイン: @keito0904 企画: @saiwaki14
-    - if notice
-      %p
-        .alert.alert-info= notice
-  .col-xs-6.right-content
+  -#.col-xs-6.left-content
+  -#  %h1 #Twitter
+  -#  %p.ex
+  -#    Twitterのクローン作成です
+  -#  %p.by
+  -#    開発者: おおはしたくや
+  -#  - if notice
+  -#    %p
+  -#      .alert.alert-info= notice
+  .col-xs-6.center-content
     = form_for @user, url: registrations_path, method: :post do |f|
       %h2
-        会員登録する
+        アカウント作成
         - @user.errors.each do |attr, message|
           .alert.alert-danger= message
       .form-group
-        = f.label :name, "ユーザーID: @cyllabus_jp", class: "control-label"
+        = f.label :screen_name, '名前', class: "control-label"
+        = f.text_field :screen_name, class: "form-control"
+      .form-group
+        = f.label :name, "ユーザー名 @以下", class: "control-label"
         = f.text_field :name, class: "form-control"
       .form-group
-        = f.label :email,"メールアドレス: hello@cyllabus.jp", class: "control-label"
+        = f.label :email,"メールアドレス ex: xxx@keio.jp", class: "control-label"
         = f.text_field :email, class: "form-control"
       .form-group
         = f.label :password, "パスワード: 6文字以上", class: "control-label"
@@ -26,6 +29,12 @@
       .form-group
         = f.label :password_confirmation, "確認用パスワード: 6文字以上", class: "control-label"
         = f.password_field :password_confirmation, class: "form-control"
+      .form-group
+        = f.label :image_url, "プロフィール画像"
+        = image_tag @user.image_url.thumb.url if @user.image_url?
+        = f.file_field :image_url
+        = f.hidden_field :image_url_cache
+
       = f.submit "登録する", class: "btn btn-primary"
-      = link_to "ログインする", new_sessions_path, class: "login pull-right"
+      = link_to "ログインする", new_sessions_path, class: "btn btn-success"
       .clear

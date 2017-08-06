@@ -1,7 +1,7 @@
 class RegistrationsController < ApplicationController
   def new
     @user = User.new
-    redirect_to tweets_url if logged_in?
+    redirect_to timeline_tweets_url if logged_in?
   end
 
   def create
@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
 
     if @user.save
       login(@user.email, @user.password)
-      redirect_to tweets_url
+      redirect_to timeline_tweets_url
     else
       render :new
     end
@@ -18,6 +18,6 @@ class RegistrationsController < ApplicationController
   private
 
   def params_user
-     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+     params.require(:user).permit(:screen_name, :name, :email, :password, :password_confirmation)
   end
 end

@@ -1,7 +1,7 @@
 = div_for user, class: "list-group-item" do |u|
   %h4.user
     %span.user-name
-      = link_to u.name, user_path(u)
+      = link_to u.screen_name, user_path(u)
     %span.user-id
       @#{u.name}
   .bio

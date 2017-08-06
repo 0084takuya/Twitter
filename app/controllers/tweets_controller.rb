@@ -4,10 +4,12 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   # GET /tweets.json
-  def index
-    @tweets = Tweet.all
-    @tweet = Tweet.new
-  end
+  # def index
+  #   @tweets = Tweet.all
+  #   @tweet = Tweet.new
+  #   @user = User.find(params[:id])
+  #   render 'timeline'
+  # end
 
   def timeline
     @tweets = Tweet.eager_load(user: :inverse_follows).where(follows: { follower_id: current_user.id})
@@ -36,11 +38,11 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to tweets_url, notice: 'Tweet was successfully created.' }
-        format.json { render :show, status: :created, location: @tweet }
+        format.html { redirect_to timeline_tweets_url, notice: 'Tweet was successfully created.' }
+        format.json { render :show, status: :created, location: @tweets }
       else
         @tweets = Tweet.all
-        format.html { render :index }
+        format.html { render :timeline }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
@@ -78,6 +80,6 @@ class TweetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tweet_params
-      params.require(:tweet).permit(:content)
+      params.require(:tweet).permit(:content, :image_url)
     end
 end

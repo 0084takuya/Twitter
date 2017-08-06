@@ -13,5 +13,6 @@ module Tubuyaki
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :ja
     config.sass.preferred_syntax = :sass
+    config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
   end
 end

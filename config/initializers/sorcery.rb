@@ -168,7 +168,7 @@ Rails.application.config.sorcery.configure do |config|
 
   # config.jira.key = "1234567"
   # config.jira.secret = "jiraTest"
-  # config.jira.site = "http://localhost:2990/jira/plugins/servlet/oauth"
+  # config.jira.site = "http://:2990/jira/plugins/servlet/oauth"
   # config.jira.signature_method =  "RSA-SHA1"
   # config.jira.private_key_file = "rsakey.pem"
 

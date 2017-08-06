@@ -1,21 +1,27 @@
 = div_for tweet, class: "list-group-item" do |t|
   %h4.user
     %span.user-name
-      = link_to t.user.name, users_path(t.user)
+      = link_to t.user.name
+      -#user一覧に進む
+      -#, users_path(t.user)
     %span.user-id
       @#{t.user.name}
     %span.time.pull-right
-      -#= distance_of_time_in_words_to_now(t.created_at)
+      = distance_of_time_in_words_to_now(t.created_at)
     .clear
   .tweet-content
     %p
       =t.content
     .content-footer
-      - if t.favorited_by? current_user
-        = link_to "お気に入りの解除", tweet_favorites_path(t), method: :delete
-      -else
-        = link_to "お気に入りに登録", tweet_favorites_path(t), method: :post
-      - if t.user.followed_by? current_user
-        = link_to "フォロー解除", user_follows_path(t.user), method: :delete
-      -else
-        = link_to "フォロー", user_follows_path(t.user), method: :post
+      -if logged_in?
+        = link_to "返信"
+        - if t.favorited_by? current_user
+          = link_to "お気に入りの解除", tweet_favorites_path(t), method: :delete
+        -else
+          -#method: post にするにはJSが必要　返信　ファボのマークを表示
+          %a{:href => tweet_favorites_path(t)}
+            %span.i.fa-heart-o
+            %span.text= "お気に入りに登録"
+
+            -#= link_to "", tweet_favorites_path(t), method: :post
+

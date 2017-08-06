@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  mount_uploader :image_url, ImageUploader
+  mount_uploader :background_image_url, ImageUploader
+
   has_many :tweets, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
@@ -14,6 +17,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :password, confirmation: true, length: { in: 6..24 }, if: :password
   validates :password_confirmation, presence: true, if: :password
+  validates :image_url, :background_image_url, :presence => true
+
+
 
   def followed_by? user
     inverse_follows.where(follower_id: user.id).exists?

@@ -1,0 +1,12 @@
+- if logged_in?
+  .panel.panel-default
+    .panel-body
+      = "おすすめのユーザー 更新・すべて見る"
+      %br
+      %br
+      %br
+      %br
+
+      = "友達を見つける"
+      - @tweet.errors.full_messages.each do |message|
+        .alert.alert-danger= message

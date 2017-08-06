@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413072508) do
+ActiveRecord::Schema.define(version: 20170502005644) do
 
   create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -31,24 +31,51 @@ ActiveRecord::Schema.define(version: 20170413072508) do
     t.index ["inverse_follower_id"], name: "index_follows_on_inverse_follower_id", using: :btree
   end
 
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "message",      limit: 65535
+    t.integer  "image_url"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "to_user_id"
+    t.string   "from_user_id"
+  end
+
+  create_table "moments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "to_user_id"
+    t.integer  "from_user_id"
+    t.text     "message",      limit: 65535
+    t.integer  "image_url"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
     t.index ["created_at"], name: "index_tweets_on_created_at", using: :btree
     t.index ["user_id"], name: "index_tweets_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",            null: false
+    t.string   "email",                null: false
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "name"
     t.string   "screen_name"
     t.string   "bio"
+    t.string   "image_url"
+    t.string   "background_image_url"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

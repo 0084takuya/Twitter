@@ -6,7 +6,7 @@ class Follow < ApplicationRecord
   validates :inverse_follower, presence: true
   validates :inverse_follower_id, uniqueness: { scope: :follower_id }
 
-  def followed_by? user
-    inverse_follows.where(follower_id: user.id).exists?
-  end
+  # def followed_by? user
+  #   inverse_follows.where(follower_id: user.id).exists?
+  # end
 end

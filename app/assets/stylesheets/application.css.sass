@@ -15,7 +15,29 @@
  */
 
 @import bootstrap
+@import "my-bootstrap"
 
+.search-input
+  border: 0
+  padding:  1px
+  font-size:  0.7em
+  font-family: Arial, sans-serif
+  color:  #aaa
+  border: solid 1px #ccc
+  margin: 0 0 0px
+  width:  180px
+  -webkit-box-shadow: 0px 1px rgba(255, 255, 255, 0.5)
+  -moz-box-shadow: 0px 1px rgba(255, 255, 255, 0.5)
+  box-shadow: 0px 1px rgba(255, 255, 255, 0.5)
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
+  border-radius: 3px
+  border-radius: 30px
+
+//.search-icon
+//  position: absolute
+//  right: -0.5px
+//  top: 0.5px
 
 html, body
   width: 100%
@@ -79,37 +101,95 @@ html, body
         .text
         .num
           font-size: 28px
-#tweets-cotent
-  .left-content
+
+#tweets-content
+
+  .dashboard.content-main
+    float: left
+    margin: 0 10px
+    width: 590px
+  .dashboard.dashboard-right
+    float: right
+    width: 240px
+  .dashboard.dashboard-left
+    float: left
+    width: 290px
     .panel
       box-shadow: none
       border-bottom-width: 3px
       .user
+        height: 250px
         .user-name
           font-size: 20px
           font-weight: 600
           color: #555
+          display: table-cell
+          list-style: none
         .user-id
           color: #aaa
+          display: table-cell
+          list-style: none
         &:hover
           text-decoration: none
           border-bottom: 1px solid #555
-      .user-activity
-        text-align: center
-        .row
-          border-bottom: 1px solid #ddd
-          padding: 10px 0px
+        .text
+          color: #657786
+          font-size: 10px
+          letter-spacing: .02em
+          overflow: hidden
+          text-transform: uppercase
+          transition: color .15s ease-in-out
+        .num
+          font-size: 18px
+        .user-image
+          max-width: 100px
+          height: auto
+          display: table-cell
+          list-style: none
+          position: relative
+          left: 5px
+          top: -30px
+        .user-background-image
+          max-width: 288px
+          height: auto
+          display: table-cell
+          list-style: none
+        .fixed-username
+          position: relative
+          top: -50px
+          left: 120px
+      .profilecard
+        margin-left: 11px
+        padding: 10px 0
+
+        .Arrange-sizeFit
+          width: 1%
+          display: table-cell
+          margin: 0
+          list-style: none
+          padding: 0
+
           .text
-            font-size: 12px
-            color: #777
+            color: #657786
+            font-size: 10px
+            letter-spacing: .02em
+            overflow: hidden
+            text-transform: uppercase
+            transition: color .15s ease-in-out
           .num
             font-size: 18px
-      .new_tweet
-        margin-top: 20px
-        testarea
-          width: 100% !important
-        .btn
-          width: 100%
+
+
+
+
+
+
+      //.new_tweet
+      //  margin-top: 20px
+      //  testarea
+      //    width: 100% !important
+      //  .btn
+      //    width: 100%
   .right-content
     .list-group-item:last-child
       border-bottom-width: 3px
@@ -132,5 +212,7 @@ html, body
           a
             font-size: 12px
             margin-right: 10px
-
+footer
+  .copyright-text
+    text-align: center
 

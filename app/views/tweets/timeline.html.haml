@@ -1,14 +1,19 @@
 #tweets-content
-  .cotainer
-    .row
-      .col-xs-4.left-content
-        = render partial: "panel"
-      .col-xs-8.right-content
-        - if notice
-          .alert.alert-info= notice
-        .list-group
-          .list-group-item
-            .btn-group
-              = link_to "全てのつぶやき", tweets_path, class: "active btn btn-primany"
-              = link_to "フォローしている人のつぶやき", timeline_tweets_path, class: "btn btn-default"
-          = render partial: "users/tweet", collection: @tweets
+  //#container.に変える
+  .container
+    .dashboard.dashboard-left
+      = render partial: "panel"
+      = render partial: "trend"
+    .dashboard.content-main#timeline
+      - if notice
+        .alert.alert-info= notice
+      .list-group
+        .list-group-item
+          .btn-group
+            = render partial: "tweet"
+            -#= link_to "全てのつぶやき", tweets_path, class: "active btn btn-primany"
+            -#= link_to "フォローしている人のつぶやき", timeline_tweets_path, class: "btn btn-default"
+        = render partial: "users/tweet", collection: @tweets
+    .dashboard.dashboard-right
+      = render partial: "recommendations"
+      = render partial: "about_twitter"
